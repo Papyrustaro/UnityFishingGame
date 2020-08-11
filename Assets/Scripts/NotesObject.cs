@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NotesObject : MonoBehaviour
+public abstract class NotesObject : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    /// <summary>
+    /// アニメーション再生速度(ノーツ速度)
+    /// </summary>
+    public float PlaySpeed { get; private set; } = 1f;
 
-    // Update is called once per frame
-    void Update()
+    public void Generate(float playSpeed)
     {
-        
+        this.PlaySpeed = playSpeed;
+        this.gameObject.SetActive(this);
     }
 }
