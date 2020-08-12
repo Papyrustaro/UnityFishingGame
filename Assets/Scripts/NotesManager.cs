@@ -13,6 +13,9 @@ public class NotesManager : MonoBehaviour
     /// </summary>
     [SerializeField] private GameObject[] notePrefabs;
     [SerializeField][ReadOnly] private NotesObject[] notes;
+    private int currentNoteIndex = 0;
+
+    public NotesObject CurrentNotesObject => this.notes[this.currentNoteIndex];
 
     public static NotesManager Instance { private set; get; }
 
@@ -40,7 +43,7 @@ public class NotesManager : MonoBehaviour
     public void GenerateNote()
     {
         //とりあえずSetActiveで。gameObjectとしてsetActiveしなくても、描画処理だけ変えればいいかも？
-        this.notes[UnityEngine.Random.Range(0, this.notes.Length)].Generate(10f/*UnityEngine.Random.Range(0.5f, 2f)*/);
+        this.notes[UnityEngine.Random.Range(0, this.notes.Length)].Generate(5f/*UnityEngine.Random.Range(0.5f, 2f)*/);
     }
 
     [Button(enabledMode: EButtonEnableMode.Editor)]
