@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 /// <summary>
 /// Notesの出現処理など、Notesの管理
@@ -11,7 +12,7 @@ public class NotesManager : MonoBehaviour
     /// タイミングアニメーションごとにひとつ。
     /// </summary>
     [SerializeField] private GameObject[] notePrefabs;
-    private NotesObject[] notes;
+    [SerializeField][ReadOnly] private NotesObject[] notes;
 
     public static NotesManager Instance { private set; get; }
 
@@ -25,6 +26,12 @@ public class NotesManager : MonoBehaviour
         {
             throw new System.Exception();
         }
+
+    }
+
+    private void Start()
+    {
+        GenerateNote();
     }
 
     /// <summary>
@@ -32,7 +39,17 @@ public class NotesManager : MonoBehaviour
     /// </summary>
     public void GenerateNote()
     {
-        //とりあえずSetActiveで。Instantiateにするかも
-        this.notes[UnityEngine.Random.Range(0, this.notes.Length)].Generate(UnityEngine.Random.Range(0.5f, 2f));
+        //とりあえずSetActiveで。gameObjectとしてsetActiveしなくても、描画処理だけ変えればいいかも？
+        this.notes[UnityEngine.Random.Range(0, this.notes.Length)].Generate(10f/*UnityEngine.Random.Range(0.5f, 2f)*/);
+    }
+
+    [Button(enabledMode: EButtonEnableMode.Editor)]
+    public void InitSetNotes()
+    {
+        this.notes = new NotesObject[this.notePrefabs.Length];
+        for(int i = 0; i < this.notePrefabs.Length; i++)
+        {
+            this.notes[i] = this.notePrefabs[i].GetComponent<NotesObject>();
+        }
     }
 }

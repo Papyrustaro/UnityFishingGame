@@ -1,17 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using System;
 
 public abstract class NotesObject : MonoBehaviour
 {
-    /// <summary>
-    /// アニメーション再生速度(ノーツ速度)
-    /// </summary>
-    public float PlaySpeed { get; private set; } = 1f;
+    protected Sequence noteAnimationSequence;
 
     public void Generate(float playSpeed)
     {
-        this.PlaySpeed = playSpeed;
+        if(this.noteAnimationSequence == null) SetNoteAnimationSequence();
+        this.noteAnimationSequence.timeScale = playSpeed;
         this.gameObject.SetActive(this);
     }
+
+    /// <summary>
+    /// タイミングアニメーションの初期化
+    /// </summary>
+    protected abstract void SetNoteAnimationSequence();
 }
