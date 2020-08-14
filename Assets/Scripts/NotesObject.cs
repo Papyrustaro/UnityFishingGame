@@ -28,6 +28,11 @@ public abstract class NotesObject : MonoBehaviour
     /// </summary>
     public float TimeFromJustToCurrent => Mathf.Abs(JustTimeFromRoutineStart - CountTimeFromEveryRoutineStart);
 
+    /// <summary>
+    /// 開始から何ルーチン経ったか(往復の場合は片道で1ルーチン)
+    /// </summary>
+    public int CountRoutine { get; protected set; }
+
     public void Generate(float playSpeed)
     {
         if (this.noteAnimationSequence == null)

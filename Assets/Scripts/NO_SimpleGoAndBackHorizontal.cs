@@ -20,9 +20,10 @@ public class NO_SimpleGoAndBackHorizontal : NotesObject
             .AppendCallback(() => this.CountTimeFromEveryRoutineStart = 0f)
             .Append(this.movingBar.transform.DOMoveX(0f, 2f))
             .Append(this.movingBar.transform.DOMoveX(-this.movingBar.transform.position.x, 2f))
-            .AppendCallback(() => this.CountTimeFromEveryRoutineStart = 0f)
+            .AppendCallback(() => { this.CountTimeFromEveryRoutineStart = 0f; this.CountRoutine++; })
             .Append(this.movingBar.transform.DOMoveX(0f, 2f))
             .Append(this.movingBar.transform.DOMoveX(this.movingBar.transform.position.x, 2f))
+            .AppendCallback(() => this.CountRoutine++)
             .SetLoops(-1);
     }
 }

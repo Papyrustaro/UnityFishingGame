@@ -8,6 +8,11 @@ using NaughtyAttributes;
 /// </summary>
 public class NotesManager : MonoBehaviour
 {
+    private readonly float justTimeRange = 0.04f;
+    private readonly float greatTimeRange = 0.1f;
+    private readonly float goodTimeRange = 0.2f;
+    private readonly float badTimeRange = 0.3f;
+
     /// <summary>
     /// タイミングアニメーションごとにひとつ。
     /// </summary>
@@ -16,6 +21,22 @@ public class NotesManager : MonoBehaviour
     private int currentNoteIndex = 0;
 
     public NotesObject CurrentNotesObject => this.notes[this.currentNoteIndex];
+
+    /// <summary>
+    /// 現在の入力判定を取得
+    /// </summary>
+    public E_NotesInputAccuracy CurrentNotesInputAccuracy
+    {
+        get
+        {
+            float timeFromJustToCurrent = this.CurrentNotesObject.TimeFromJustToCurrent;
+            if (timeFromJustToCurrent <= this.justTimeRange / 2) return E_NotesInputAccuracy.Just;
+            else if (timeFromJustToCurrent <= this.greatTimeRange / 2) return E_NotesInputAccuracy.Great;
+            else if (timeFromJustToCurrent <= this.goodTimeRange / 2) return E_NotesInputAccuracy.Good;
+            else if (timeFromJustToCurrent <= this.badTimeRange / 2) return E_NotesInputAccuracy.Bad;
+            else return E_NotesInputAccuracy.Miss;
+        }
+    }
 
     public static NotesManager Instance { private set; get; }
 
@@ -54,5 +75,17 @@ public class NotesManager : MonoBehaviour
         {
             this.notes[i] = this.notePrefabs[i].GetComponent<NotesObject>();
         }
+    }
+
+    /// <summary>
+    /// 入力精度
+    /// </summary>
+    public enum E_NotesInputAccuracy
+    {
+        Just,
+        Great,
+        Good,
+        Bad,
+        Miss
     }
 }
