@@ -28,7 +28,7 @@ public class FishingSceneManager : MonoBehaviour
     {
         if(this.currentState == E_FishingSceneState.TryInputJustTime && Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log(NotesManager.Instance.CurrentNotesObject.TimeFromJustToCurrent);
+            Debug.Log(NotesManager.Instance.CurrentNotesObject.CountRoutine);
             Debug.Log(NotesManager.Instance.CurrentNotesInputAccuracy);
         }
     }

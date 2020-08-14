@@ -64,7 +64,7 @@ public class NotesManager : MonoBehaviour
     public void GenerateNote()
     {
         //とりあえずSetActiveで。gameObjectとしてsetActiveしなくても、描画処理だけ変えればいいかも？
-        this.notes[UnityEngine.Random.Range(0, this.notes.Length)].Generate(5f/*UnityEngine.Random.Range(0.5f, 2f)*/);
+        this.notes[this.currentNoteIndex/*UnityEngine.Random.Range(0, this.notes.Length)*/].Generate(5f/*UnityEngine.Random.Range(0.5f, 2f)*/);
     }
 
     [Button(enabledMode: EButtonEnableMode.Editor)]
