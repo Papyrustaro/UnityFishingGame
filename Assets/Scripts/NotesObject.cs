@@ -77,6 +77,7 @@ public abstract class NotesObject : MonoBehaviour
             this.onUpdateInSequence.Invoke();
         });
     }
+
     /// <summary>
     /// タイミングアニメーションの初期化。
     /// </summary>
