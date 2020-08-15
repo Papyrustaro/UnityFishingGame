@@ -24,7 +24,7 @@ public abstract class NotesObject : MonoBehaviour
     protected float OneInputRoutineTime => this.JustTimeFromRoutineStart * 2f;
 
     /// <summary>
-    /// timeScale==1fにおける、アニメーションのワンルーチン開始からjustTimeまでの時間(継承先で指定)
+    /// timeScale==1fにおける、アニメーションのワンルーチン開始からjustTimeまでの時間(継承先で指定)。ワンルーチンの時間の半分。
     /// </summary>
     protected abstract float JustTimeFromRoutineStartInDefaultTimeScale { get; }
 
