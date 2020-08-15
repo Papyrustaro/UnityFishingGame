@@ -57,6 +57,7 @@ public abstract class NotesObject : MonoBehaviour
         }
         this.noteAnimationSequence.timeScale = playSpeed;
         this.gameObject.SetActive(this);
+        if (!this.noteAnimationSequence.IsPlaying()) this.noteAnimationSequence.Play(); 
     }
 
     private void SetSequenceOnUpdateFunc()

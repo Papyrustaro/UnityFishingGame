@@ -13,6 +13,14 @@ public class NotesManager : MonoBehaviour
     private readonly float goodTimeRange = 0.2f;
     private readonly float badTimeRange = 0.3f;
 
+    private readonly float minAnimationSpeedRate = 0.5f;
+    private readonly float maxAnimationSpeedRate = 2f;
+
+    /// <summary>
+    /// 1回の釣り上げに、何個のタイミングアニメーションを再生するか
+    /// </summary>
+    private readonly int countOfInputSequenceInOneFishing = 3;
+
     /// <summary>
     /// タイミングアニメーションごとにひとつ。
     /// </summary>
@@ -37,6 +45,11 @@ public class NotesManager : MonoBehaviour
             else return E_NotesInputAccuracy.Miss;
         }
     }
+
+    /// <summary>
+    /// ひとつの釣り上げで、現在何回すでに入力しているか(何個目の入力か...最初は0個め)
+    /// </summary>
+    public int CountInputInOneFishing { get; private set; }
 
     public static NotesManager Instance { private set; get; }
 
@@ -76,16 +89,17 @@ public class NotesManager : MonoBehaviour
             this.notes[i] = this.notePrefabs[i].GetComponent<NotesObject>();
         }
     }
+    
+}
 
-    /// <summary>
-    /// 入力精度
-    /// </summary>
-    public enum E_NotesInputAccuracy
-    {
-        Just,
-        Great,
-        Good,
-        Bad,
-        Miss
-    }
+/// <summary>
+/// 入力精度
+/// </summary>
+public enum E_NotesInputAccuracy
+{
+    Just,
+    Great,
+    Good,
+    Bad,
+    Miss
 }
