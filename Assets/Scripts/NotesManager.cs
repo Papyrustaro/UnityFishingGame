@@ -18,7 +18,7 @@ public class NotesManager : MonoBehaviour
     /// </summary>
     [SerializeField] private GameObject[] notePrefabs;
     [SerializeField][ReadOnly] private NotesObject[] notes;
-    private int currentNoteIndex = 3;
+    private int currentNoteIndex = 4;
 
     public NotesObject CurrentNotesObject => this.notes[this.currentNoteIndex];
 
