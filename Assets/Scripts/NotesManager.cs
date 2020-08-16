@@ -59,10 +59,10 @@ public class NotesManager : MonoBehaviour
 
     }
 
-    private void Start()
+    /*private void Start()
     {
         GenerateNote();
-    }
+    }*/
 
     /// <summary>
     /// タイミングを計るためのnotesObject生成。生成する種類と、再生速度はランダム。

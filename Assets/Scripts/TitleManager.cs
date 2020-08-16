@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using KanKikuchi.AudioManager;
+using UnityEngine.UI;
 
 public class TitleManager : MonoBehaviour
 {
+    [SerializeField] private InputField playerNameInputField;
+
     private void Start()
     {
         BGMManager.Instance.Play(BGMPath.BGM, isLoop: true);
+        this.playerNameInputField.Select();
     }
 
-    private void Update()
+    public void OnEndEditPlayerName()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if(this.playerNameInputField.text != "")
         {
+            StaticData.playerName = this.playerNameInputField.text;
             SceneManager.LoadScene("Fishing");
         }
     }

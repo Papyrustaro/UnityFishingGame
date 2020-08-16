@@ -4,15 +4,19 @@ using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
 using KanKikuchi.AudioManager;
+using UnityEngine.UI;
 
 /// <summary>
 /// 釣りゲーム中のManager
 /// </summary>
 public class FishingSceneManager : MonoBehaviour
 {
-    private E_FishingSceneState currentState = E_FishingSceneState.TryInputJustTime;
+    private E_FishingSceneState currentState = E_FishingSceneState.WaitEatFeedAnimation;
     private readonly int scoreOfOneFish = 10;
     [SerializeField] private SpriteRenderer feedToFishRenderer;
+    [SerializeField] private GameObject wantEatFish;
+    [SerializeField] private GameObject feedAndNeedleAndFish;
+    [SerializeField] private GameObject nextFishText;
 
     /// <summary>
     /// 1回の釣り上げに、何個のタイミングアニメーションを再生するか
@@ -151,6 +155,13 @@ public class FishingSceneManager : MonoBehaviour
     private void Start()
     {
         this.SetRandomSpriteOfFeedToFish();
+        StartCoroutine(CoroutineManager.DelayMethod(1f, () =>
+        {
+            this.feedAndNeedleAndFish.SetActive(false);
+            this.wantEatFish.SetActive(false);
+            NotesManager.Instance.GenerateNote();
+            this.currentState = E_FishingSceneState.TryInputJustTime;
+        }));
     }
 
     private void Update()
@@ -160,8 +171,16 @@ public class FishingSceneManager : MonoBehaviour
             this.OnPlayerInput();
         }else if(this.currentState == E_FishingSceneState.ShowFishedThing && Input.GetKeyDown(KeyCode.Return))
         {
-            this.currentState = E_FishingSceneState.TryInputJustTime;
-            NotesManager.Instance.GenerateNote();
+            this.nextFishText.SetActive(false);
+            this.currentState = E_FishingSceneState.WaitEatFeedAnimation;
+            this.wantEatFish.SetActive(true);
+            StartCoroutine(CoroutineManager.DelayMethod(1f, () =>
+            {
+                this.feedAndNeedleAndFish.SetActive(false);
+                this.wantEatFish.SetActive(false);
+                NotesManager.Instance.GenerateNote();
+                this.currentState = E_FishingSceneState.TryInputJustTime;
+            }));
         }
     }
 
@@ -236,6 +255,9 @@ public class FishingSceneManager : MonoBehaviour
         FishingUIManager.Instance.CurrentScoreText.text = "獲得スコア: " + this.CurrentScore;
         this.SetRandomSpriteOfFeedToFish();
         this.currentState = E_FishingSceneState.ShowFishedThing;
+        this.wantEatFish.SetActive(false);
+        this.feedAndNeedleAndFish.SetActive(true);
+        this.nextFishText.SetActive(true);
     }
 
     /// <summary>
@@ -286,5 +308,6 @@ public class FishingSceneManager : MonoBehaviour
         TryInputJustTime,
         ShowFishedThing,
         WaitActionOnInput,
+        WaitEatFeedAnimation,
     }
 }
