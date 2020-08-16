@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4076754836825782452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4076754836825782458}
+  - component: {fileID: 4076754836825782459}
+  m_Layer: 0
+  m_Name: FishData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4076754836825782458
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4076754836825782452}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4076754836825782459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4076754836825782452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d47c1872a414304bac5e81115b8f96d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  verySmallFishSprites:
+  - {fileID: 21300000, guid: e69694f1e4255c548955dbbc22ebe97f, type: 3}
+  - {fileID: 21300000, guid: 1c3ef5bfb943e6440a343a66c5e38027, type: 3}
+  - {fileID: 21300000, guid: 1bf446ed3c28cac47b751faee1bfc3ed, type: 3}
+  - {fileID: 21300000, guid: ee5ce2033b4c2c148953e895d9e18957, type: 3}
+  - {fileID: 21300000, guid: 2da85a7b784d4b7439ce62717be64d79, type: 3}
+  - {fileID: 21300000, guid: 8d7c3d917765fb64c9752b611b9d0d62, type: 3}
+  smallFishSprites:
+  - {fileID: 21300000, guid: c51731179770c594a8a52663a9eefa97, type: 3}
+  - {fileID: 21300000, guid: 0a44fb5913ed4514d8c8e98122e384b4, type: 3}
+  - {fileID: 21300000, guid: b5299cb53ddd4494cbc27e226912551d, type: 3}
+  - {fileID: 21300000, guid: d0b0480e4cb3f6d4e8b39acede7c0ae8, type: 3}
+  - {fileID: 21300000, guid: ae9f8a3c510545a4ead0fb692391f7aa, type: 3}
+  - {fileID: 21300000, guid: 0b62479d4d362bd41a2b14c0146ae3f2, type: 3}
+  - {fileID: 21300000, guid: 49da45a498ac9a6449342a09a2640914, type: 3}
+  - {fileID: 21300000, guid: c092ed5534a2d854a8bebb49c78f29e9, type: 3}
+  - {fileID: 21300000, guid: 0a82533da9a6f2d48a02e4e984ef5aef, type: 3}
+  - {fileID: 21300000, guid: c4c0a92c716b38b44affe28c60e0b21d, type: 3}
+  - {fileID: 21300000, guid: c3d25b222dcbe3049bdf265b719bdb29, type: 3}
+  - {fileID: 21300000, guid: b60535f6f444c0e4b973e92d483fd0c3, type: 3}
+  - {fileID: 21300000, guid: 292c9732f8929444d94c6c32792628b4, type: 3}
+  - {fileID: 21300000, guid: 133303ac6ad2444488da5ad65aad9998, type: 3}
+  - {fileID: 21300000, guid: c5e2cad0cd2704d4caef03857468c335, type: 3}
+  - {fileID: 21300000, guid: f0b1be8b9d073de4b9a0c7448917b6af, type: 3}
+  - {fileID: 21300000, guid: c9532a047c2fb464aaa8f9c9ff1d2c4c, type: 3}
+  - {fileID: 21300000, guid: aa5596c7827c371498336b6f0780fe77, type: 3}
+  middleSizeFishSprites:
+  - {fileID: 21300000, guid: f056bcdf6e840794f982d3893ca5dfb7, type: 3}
+  - {fileID: 21300000, guid: 6cc43143b8772604cba3b6d18cc8fcb6, type: 3}
+  - {fileID: 21300000, guid: 14c7943b52b514e4cb60718b03dc03cc, type: 3}
+  - {fileID: 21300000, guid: 1acb2de25c1240b48bdaf7b9f08101a5, type: 3}
+  - {fileID: 21300000, guid: 678178841eaf2af4c888f3c76491a371, type: 3}
+  - {fileID: 21300000, guid: f8b52b254a76733449220aef77848ce6, type: 3}
+  - {fileID: 21300000, guid: 783f33ae0aacbc645a7bda427ef549f0, type: 3}
+  - {fileID: 21300000, guid: e083e064b1f55ca4e9444af76818484d, type: 3}
+  - {fileID: 21300000, guid: e92b76d8ff1033d428f7ef5853904dc8, type: 3}
+  - {fileID: 21300000, guid: e2091ec0a59b1c84c9e2b830a15246b9, type: 3}
+  - {fileID: 21300000, guid: 4d59cf1ac2a16cc4fa06d23bd8ead8bc, type: 3}
+  bigFishSprites:
+  - {fileID: 21300000, guid: 86fdb429380406f4db9c7b9a6d47cc86, type: 3}
+  - {fileID: 21300000, guid: c0834acb887032a418d6a872ee9762b3, type: 3}
+  - {fileID: 21300000, guid: 31e2f19fadc2d454c89f33bc46473848, type: 3}
+  - {fileID: 21300000, guid: 44b96f566c3cfb646a14f13317fe69ca, type: 3}
+  - {fileID: 21300000, guid: caf936752c97ff74792125b94ccc7f18, type: 3}
+  - {fileID: 21300000, guid: b0c59c167bc87ad4ab244e415c8b71fe, type: 3}
+  - {fileID: 21300000, guid: 1cdd16111e933964694beea4c30b5e98, type: 3}
+  - {fileID: 21300000, guid: 7ad05ea6e38ecba45aa2b098117cc328, type: 3}
+  - {fileID: 21300000, guid: e1a97c70d75f1dc4a92df1b9e5308377, type: 3}
+  - {fileID: 21300000, guid: b86abcdc3070a46499ff51a7b257143d, type: 3}
+  - {fileID: 21300000, guid: 8edc99a00cc6f42418605bcd35c22392, type: 3}
+  - {fileID: 21300000, guid: e7a9f682ff90e444480d3515ec33dd38, type: 3}
+  - {fileID: 21300000, guid: 87dbb6ad633b2b5468891eb61a0a6be4, type: 3}
+  veryBigFishSprites:
+  - {fileID: 21300000, guid: d9828af530cd07544beefdfea359c80e, type: 3}
+  - {fileID: 21300000, guid: 615e2d2ec3aff17409acdc0a47b44391, type: 3}
+  - {fileID: 21300000, guid: af1fada8c687e534f8d2a3c0874865d1, type: 3}
+  - {fileID: 21300000, guid: 8823758a7585cd84ea43bb61ed2f0453, type: 3}
+  - {fileID: 21300000, guid: dcdc826a4f4aa4a449386ab367637130, type: 3}
+  veryVeryBigFishSprites:
+  - {fileID: 21300000, guid: c4354069edd4a164cba8972c42e2c16b, type: 3}
+  - {fileID: 21300000, guid: 534907a6253602d46a673b57e37043e9, type: 3}
+  - {fileID: 21300000, guid: 6a8662492437f644985b3fcdd7d422ca, type: 3}
+  - {fileID: 21300000, guid: 68675c061d51f6d4bbfc458fe2d1917b, type: 3}
+  - {fileID: 21300000, guid: 0059769c6d71d1c4f96bb496f4ea2db6, type: 3}
+  - {fileID: 21300000, guid: 4aeb0bbc9ed6fe743b417ac15b27ef3c, type: 3}
+  - {fileID: 21300000, guid: 4841ff67ee020cf4d85c4ebe3dad867c, type: 3}

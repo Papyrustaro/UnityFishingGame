@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class StaticData : MonoBehaviour
 {
-    public static string playerName = "player0";
+    public static string playerName = "player11";
 }

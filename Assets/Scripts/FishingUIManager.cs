@@ -65,17 +65,18 @@ public class FishingUIManager : MonoBehaviour
             this.announcePanel.SetActive(false);
             this.resultPanel.SetActive(true);
         }));
+        StartCoroutine(CoroutineManager.DelayMethod(10f, () => this.SavePlayerResult()));
     }
 
     public void OnPressContinueButton()
     {
-        this.SavePlayerResult();
+        //this.SavePlayerResult();
         SceneManager.LoadScene("Fishing");
     }
 
     public void OnPressGoTitleButton()
     {
-        this.SavePlayerResult();
+        //this.SavePlayerResult();
         SceneManager.LoadScene("Title");
     }
 
@@ -94,7 +95,7 @@ public class FishingUIManager : MonoBehaviour
         List<NCMBObject> result = null;
         NCMBException error = null;
 
-        query.OrderByAscending("Score"); //昇順
+        query.OrderByAscending("Score"); //降順
         query.Limit = 100;
 
         query.FindAsync((List<NCMBObject> _result, NCMBException _error) =>
@@ -129,7 +130,7 @@ public class FishingUIManager : MonoBehaviour
         int thisTimeIndex = highRanksCount; //今回クリアしたプレイヤーの順位
         for (int i = 0; i < highRanksCount; i++)
         {
-            if (float.Parse(highRanks[i]["Score"].ToString()) > playerScore)
+            if (float.Parse(highRanks[i]["Score"].ToString()) < playerScore)
             {
                 thisTimeIndex = i;
                 break;

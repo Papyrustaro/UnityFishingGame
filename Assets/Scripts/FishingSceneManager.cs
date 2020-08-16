@@ -12,6 +12,7 @@ public class FishingSceneManager : MonoBehaviour
 {
     private E_FishingSceneState currentState = E_FishingSceneState.TryInputJustTime;
     private readonly int scoreOfOneFish = 10;
+    [SerializeField] private SpriteRenderer feedToFishRenderer;
 
     /// <summary>
     /// 1回の釣り上げに、何個のタイミングアニメーションを再生するか
@@ -147,6 +148,11 @@ public class FishingSceneManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        this.SetRandomSpriteOfFeedToFish();
+    }
+
     private void Update()
     {
         if(this.currentState == E_FishingSceneState.TryInputJustTime && Input.GetKeyDown(KeyCode.Space))
@@ -228,6 +234,7 @@ public class FishingSceneManager : MonoBehaviour
         this.FastInputScoreBonusInOneFishing = 0;
         this.InputAccuracyScoreBonusInOneFishing = 0;
         FishingUIManager.Instance.CurrentScoreText.text = "獲得スコア: " + this.CurrentScore;
+        this.SetRandomSpriteOfFeedToFish();
         this.currentState = E_FishingSceneState.ShowFishedThing;
     }
 
@@ -262,6 +269,16 @@ public class FishingSceneManager : MonoBehaviour
     public void PlayNewAnimation()
     {
         NotesManager.Instance.GenerateNote();
+    }
+
+    public void SetRandomSpriteOfFeedToFish()
+    {
+        if (this.CountFishedNum < 3) this.feedToFishRenderer.sprite = FishData.Instance.VerySmallFishSprites[UnityEngine.Random.Range(0, FishData.Instance.VerySmallFishSprites.Length)];
+        else if (this.CountFishedNum < 6) this.feedToFishRenderer.sprite = FishData.Instance.SmallFishSprites[UnityEngine.Random.Range(0, FishData.Instance.SmallFishSprites.Length)];
+        else if (this.CountFishedNum < 9) this.feedToFishRenderer.sprite = FishData.Instance.MiddleSizeFishSprites[UnityEngine.Random.Range(0, FishData.Instance.MiddleSizeFishSprites.Length)];
+        else if (this.CountFishedNum < 12) this.feedToFishRenderer.sprite = FishData.Instance.BigFishSprites[UnityEngine.Random.Range(0, FishData.Instance.BigFishSprites.Length)];
+        else if (this.CountFishedNum < 15) this.feedToFishRenderer.sprite = FishData.Instance.VeryBigFishSprites[UnityEngine.Random.Range(0, FishData.Instance.VeryBigFishSprites.Length)];
+        else this.feedToFishRenderer.sprite = FishData.Instance.VeryVeryBigFishSprites[UnityEngine.Random.Range(0, FishData.Instance.VeryVeryBigFishSprites.Length)];
     }
 
     public enum E_FishingSceneState
