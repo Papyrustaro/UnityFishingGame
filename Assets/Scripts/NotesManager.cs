@@ -16,10 +16,7 @@ public class NotesManager : MonoBehaviour
     private readonly float minAnimationSpeedRate = 0.5f;
     private readonly float maxAnimationSpeedRate = 2f;
 
-    /// <summary>
-    /// 1回の釣り上げに、何個のタイミングアニメーションを再生するか
-    /// </summary>
-    private readonly int countOfInputSequenceInOneFishing = 3;
+    
 
     /// <summary>
     /// タイミングアニメーションごとにひとつ。
@@ -45,11 +42,6 @@ public class NotesManager : MonoBehaviour
             else return E_NotesInputAccuracy.Miss;
         }
     }
-
-    /// <summary>
-    /// ひとつの釣り上げで、現在何回すでに入力しているか(何個目の入力か...最初は0個め)
-    /// </summary>
-    public int CountInputInOneFishing { get; private set; }
 
     public static NotesManager Instance { private set; get; }
 
@@ -78,6 +70,14 @@ public class NotesManager : MonoBehaviour
     {
         //とりあえずSetActiveで。gameObjectとしてsetActiveしなくても、描画処理だけ変えればいいかも？
         this.notes[this.currentNoteIndex/*UnityEngine.Random.Range(0, this.notes.Length)*/].Generate(1f/*UnityEngine.Random.Range(0.5f, 2f)*/);
+    }
+
+    /// <summary>
+    /// プレイヤーが入力した際のnotesの処理。(全体の処理はFishingSceneManagerでおこなう)
+    /// </summary>
+    public void OnPlayerInput()
+    {
+        this.CurrentNotesObject.StopAnimation();
     }
 
     [Button(enabledMode: EButtonEnableMode.Editor)]

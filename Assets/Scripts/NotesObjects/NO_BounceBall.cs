@@ -26,6 +26,7 @@ public class NO_BounceBall : NotesObject
             .Join(this.bounceBall.transform.DOBlendableLocalMoveBy(Vector3.down * moveYLength, this.JustTimeFromRoutineStartInDefaultTimeScale).SetEase(Ease.InQuad))
             .Append(this.bounceBall.transform.DOBlendableLocalMoveBy(Vector3.left * (moveXLength / 2), this.JustTimeFromRoutineStartInDefaultTimeScale))
             .Join(this.bounceBall.transform.DOBlendableLocalMoveBy(Vector3.up * moveYLength, this.JustTimeFromRoutineStartInDefaultTimeScale).SetEase(Ease.OutQuad))
-            .SetLoops(-1);
+            .SetLoops(-1)
+            .SetLink(this.gameObject);
     }
 }

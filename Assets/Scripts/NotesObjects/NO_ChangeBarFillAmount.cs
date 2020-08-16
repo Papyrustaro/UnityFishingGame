@@ -17,6 +17,7 @@ public class NO_ChangeBarFillAmount : NotesObject
         this.noteAnimationSequence = DOTween.Sequence()
             .Append(this.changeFillAmountBar.DOFillAmount(1f, this.JustTimeFromRoutineStartInDefaultTimeScale))
             .Append(this.changeFillAmountBar.DOFillAmount(0f, this.JustTimeFromRoutineStartInDefaultTimeScale))
-            .SetLoops(-1);
+            .SetLoops(-1)
+            .SetLink(this.gameObject);
     }
 }

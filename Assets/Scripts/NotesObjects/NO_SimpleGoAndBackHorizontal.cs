@@ -20,6 +20,7 @@ public class NO_SimpleGoAndBackHorizontal : NotesObject
             .Append(this.movingBar.transform.DOMoveX(-this.movingBar.transform.position.x, 2f))
             .Append(this.movingBar.transform.DOMoveX(0f, 2f))
             .Append(this.movingBar.transform.DOMoveX(this.movingBar.transform.position.x, 2f))
-            .SetLoops(-1);
+            .SetLoops(-1)
+            .SetLink(this.gameObject);
     }
 }

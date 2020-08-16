@@ -17,7 +17,8 @@ public class NO_RotateBigCircle : NotesObject
     {
         this.noteAnimationSequence = DOTween.Sequence()
             .Append(this.rotateObjectsCenter.transform.DOLocalRotate(Vector3.forward * -360f, this.JustTimeFromRoutineStartInDefaultTimeScale * 2f, RotateMode.FastBeyond360))
-            .SetLoops(-1);
+            .SetLoops(-1)
+            .SetLink(this.gameObject);
         foreach(GameObject obj in this.rotateObjects)
         {
             this.noteAnimationSequence

@@ -21,7 +21,8 @@ public class NO_TwinCircleMove : NotesObject
     {
         this.InitSet();
         this.noteAnimationSequence = DOTween.Sequence()
-            .SetLoops(-1);
+            .SetLoops(-1)
+            .SetLink(this.gameObject);
         this.onUpdateInSequence.AddListener(() =>
         {
             this.leftCircle.transform.position = new Vector3(this.radius * Mathf.Cos(-2 * Mathf.PI * this.CurrentPositionOfRoutine + Mathf.PI), this.radius * Mathf.Sin(-2 * Mathf.PI * this.CurrentPositionOfRoutine + Mathf.PI), 0f)
