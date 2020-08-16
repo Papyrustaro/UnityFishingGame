@@ -26,6 +26,10 @@ public class FishingUIManager : MonoBehaviour
     [field: RenameField("LimitInputOccuracyText")]
     public Text LimitInputOccuracyText { get; private set; }
 
+    [field: SerializeField]
+    [field: RenameField("ShowInputOccuracyText")]
+    public Text ShowInputOccuracyText { get; private set; }
+
 
 
 

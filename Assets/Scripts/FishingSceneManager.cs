@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
+using KanKikuchi.AudioManager;
 
 /// <summary>
 /// 釣りゲーム中のManager
@@ -165,14 +166,23 @@ public class FishingSceneManager : MonoBehaviour
     {
         NotesManager.Instance.OnPlayerInput();
         //精度表示などの共通処理
+        FishingUIManager.Instance.ShowInputOccuracyText.text = NotesManager.Instance.CurrentNotesInputAccuracy.ToString();
+
+
+        
         Debug.Log(NotesManager.Instance.CurrentNotesInputAccuracy);
         Debug.Log("かかったルーチン: " + NotesManager.Instance.CurrentNotesObject.CountRoutine);
         this.currentState = E_FishingSceneState.WaitActionOnInput;
 
+
+        if(this.IsSuccessInput && this.CountInputInOneFishing >= this.countOfInputSequenceInOneFishing - 1)
+        {
+            SEManager.Instance.Play(SEPath.ON_FISH);
+        }
         StartCoroutine(CoroutineManager.DelayMethod(1f, () =>
         {
+            FishingUIManager.Instance.ShowInputOccuracyText.text = "";
             NotesManager.Instance.CurrentNotesObject.gameObject.SetActive(false);
-            //NotesManager.Instance.CurrentNotesObject.ResetBeforeFinish(); //ここでリセットすると、精度用countTime等までリセットされる
             if (this.IsSuccessInput)
             {
                 //今回の入力精度ボーナス等記憶。

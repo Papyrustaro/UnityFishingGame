@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using KanKikuchi.AudioManager;
 
 /// <summary>
 /// Notesの出現処理など、Notesの管理
@@ -11,7 +12,7 @@ public class NotesManager : MonoBehaviour
     private readonly float justTimeRange = 0.04f;
     private readonly float greatTimeRange = 0.1f;
     private readonly float goodTimeRange = 0.2f;
-    private readonly float badTimeRange = 100f;
+    private readonly float badTimeRange = 0.5f;
 
     private readonly float minAnimationSpeedRate = 0.5f;
     private readonly float maxAnimationSpeedRate = 2f;
@@ -23,7 +24,7 @@ public class NotesManager : MonoBehaviour
     /// </summary>
     [SerializeField] private GameObject[] notePrefabs;
     [SerializeField][ReadOnly] private NotesObject[] notes;
-    private int currentNoteIndex = 4;
+    private int currentNoteIndex = 0;
 
     public NotesObject CurrentNotesObject => this.notes[this.currentNoteIndex];
 
@@ -69,7 +70,8 @@ public class NotesManager : MonoBehaviour
     public void GenerateNote()
     {
         //とりあえずSetActiveで。gameObjectとしてsetActiveしなくても、描画処理だけ変えればいいかも？
-        this.notes[this.currentNoteIndex/*UnityEngine.Random.Range(0, this.notes.Length)*/].Generate(1f/*UnityEngine.Random.Range(0.5f, 2f)*/);
+        this.currentNoteIndex = UnityEngine.Random.Range(0, this.notePrefabs.Length);
+        this.notes[this.currentNoteIndex].Generate(UnityEngine.Random.Range(0.5f, 3f));
     }
 
     /// <summary>
@@ -77,6 +79,24 @@ public class NotesManager : MonoBehaviour
     /// </summary>
     public void OnPlayerInput()
     {
+        switch (this.CurrentNotesInputAccuracy)
+        {
+            case E_NotesInputAccuracy.Just:
+                SEManager.Instance.Play(SEPath.JUST);
+                break;
+            case E_NotesInputAccuracy.Great:
+                SEManager.Instance.Play(SEPath.GREAT);
+                break;
+            case E_NotesInputAccuracy.Good:
+                SEManager.Instance.Play(SEPath.GOOD);
+                break;
+            case E_NotesInputAccuracy.Bad:
+                SEManager.Instance.Play(SEPath.BAD);
+                break;
+            case E_NotesInputAccuracy.Miss:
+                SEManager.Instance.Play(SEPath.MISS);
+                break;
+        }
         this.CurrentNotesObject.StopAnimation();
     }
 
