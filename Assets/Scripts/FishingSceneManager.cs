@@ -218,7 +218,7 @@ public class FishingSceneManager : MonoBehaviour
     public void OnGameOver()
     {
         Debug.Log("GameOver(最終スコア: " + this.CurrentScore + ")");
-        SceneManager.LoadScene("Title");
+        FishingUIManager.Instance.OnGameOver();
     }
 
     public void OnGetFish()
