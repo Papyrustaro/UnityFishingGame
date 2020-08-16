@@ -53,7 +53,13 @@ public abstract class NotesObject : MonoBehaviour
         private set
         {
             this._countRoutine = value;
-            FishingUIManager.Instance.RemainRoutineCountText.text = "残りルーチン: " + (FishingSceneManager.Instance.CountOfRoutineLimit - this._countRoutine);
+            if (FishingSceneManager.Instance.CountOfRoutineLimit - this._countRoutine <= 0)
+            {
+                this.StopAnimation();
+                NotesManager.Instance.CurrentNotesObject.gameObject.SetActive(false);
+                FishingSceneManager.Instance.OnGameOver();
+            }
+            else FishingUIManager.Instance.RemainRoutineCountText.text = "残りルーチン: " + (FishingSceneManager.Instance.CountOfRoutineLimit - this._countRoutine);
         }
     }
 

@@ -71,7 +71,7 @@ public class NotesManager : MonoBehaviour
     {
         //とりあえずSetActiveで。gameObjectとしてsetActiveしなくても、描画処理だけ変えればいいかも？
         this.currentNoteIndex = UnityEngine.Random.Range(0, this.notePrefabs.Length);
-        this.notes[this.currentNoteIndex].Generate(UnityEngine.Random.Range(0.5f, 3f));
+        this.notes[this.currentNoteIndex].Generate(UnityEngine.Random.Range(1f, 5f));
     }
 
     /// <summary>

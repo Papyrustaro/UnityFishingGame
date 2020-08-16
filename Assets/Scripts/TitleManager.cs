@@ -11,7 +11,7 @@ public class TitleManager : MonoBehaviour
 
     private void Start()
     {
-        BGMManager.Instance.Play(BGMPath.BGM, isLoop: true);
+        BGMManager.Instance.Play(BGMPath.BGM, isLoop: true, volumeRate: 0.8f);
         this.playerNameInputField.Select();
     }
 

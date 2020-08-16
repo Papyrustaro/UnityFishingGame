@@ -65,18 +65,18 @@ public class FishingUIManager : MonoBehaviour
             this.announcePanel.SetActive(false);
             this.resultPanel.SetActive(true);
         }));
-        StartCoroutine(CoroutineManager.DelayMethod(10f, () => this.SavePlayerResult()));
+        StartCoroutine(CoroutineManager.DelayMethod(5f, () => this.SavePlayerResult()));
     }
 
     public void OnPressContinueButton()
     {
-        //this.SavePlayerResult();
+        if(!this.sendPlayerData) this.SavePlayerResult();
         SceneManager.LoadScene("Fishing");
     }
 
     public void OnPressGoTitleButton()
     {
-        //this.SavePlayerResult();
+        if(!this.sendPlayerData) this.SavePlayerResult();
         SceneManager.LoadScene("Title");
     }
 
@@ -95,7 +95,7 @@ public class FishingUIManager : MonoBehaviour
         List<NCMBObject> result = null;
         NCMBException error = null;
 
-        query.OrderByAscending("Score"); //降順
+        query.OrderByDescending("Score"); //降順
         query.Limit = 100;
 
         query.FindAsync((List<NCMBObject> _result, NCMBException _error) =>
@@ -130,7 +130,7 @@ public class FishingUIManager : MonoBehaviour
         int thisTimeIndex = highRanksCount; //今回クリアしたプレイヤーの順位
         for (int i = 0; i < highRanksCount; i++)
         {
-            if (float.Parse(highRanks[i]["Score"].ToString()) < playerScore)
+            if (int.Parse(highRanks[i]["Score"].ToString()) < playerScore)
             {
                 thisTimeIndex = i;
                 break;
@@ -171,8 +171,8 @@ public class FishingUIManager : MonoBehaviour
 
         string url = "https://twitter.com/intent/tweet?"
             + "text=" + tweetText
-            + "&url=" + "https://unityroom.com/games/spacejumpgame"
-            + "&hashtags=" + "エビ,unityroom";
+            + "&url=" + "https://unityroom.com/games/ebi_tai"
+            + "&hashtags=" + "エビ鯛フィッシング,unityroom";
 
 #if UNITY_EDITOR
         Application.OpenURL(url);

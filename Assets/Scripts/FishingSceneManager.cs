@@ -166,10 +166,10 @@ public class FishingSceneManager : MonoBehaviour
 
     private void Update()
     {
-        if(this.currentState == E_FishingSceneState.TryInputJustTime && Input.GetKeyDown(KeyCode.Space))
+        if(this.currentState == E_FishingSceneState.TryInputJustTime && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return)))
         {
             this.OnPlayerInput();
-        }else if(this.currentState == E_FishingSceneState.ShowFishedThing && Input.GetKeyDown(KeyCode.Return))
+        }else if(this.currentState == E_FishingSceneState.ShowFishedThing && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return)))
         {
             this.nextFishText.SetActive(false);
             this.currentState = E_FishingSceneState.WaitEatFeedAnimation;
@@ -244,6 +244,7 @@ public class FishingSceneManager : MonoBehaviour
     {
         Debug.Log("GameOver(最終スコア: " + this.CurrentScore + ")");
         FishingUIManager.Instance.OnGameOver();
+        this.currentState = E_FishingSceneState.WaitActionOnInput;
     }
 
     public void OnGetFish()
