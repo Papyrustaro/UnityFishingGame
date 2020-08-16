@@ -11,7 +11,7 @@ public class NotesManager : MonoBehaviour
     private readonly float justTimeRange = 0.04f;
     private readonly float greatTimeRange = 0.1f;
     private readonly float goodTimeRange = 0.2f;
-    private readonly float badTimeRange = 0.3f;
+    private readonly float badTimeRange = 100f;
 
     private readonly float minAnimationSpeedRate = 0.5f;
     private readonly float maxAnimationSpeedRate = 2f;

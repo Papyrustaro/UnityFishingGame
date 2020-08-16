@@ -10,6 +10,7 @@ public class CoroutineManager : MonoBehaviour
         float countTime = 0f;
         while (countTime < waitTime)
         {
+            countTime += Time.deltaTime;
             //if (!StageTimeManager.Instance.AllStop) countTime += Time.deltaTime;
             yield return null;
         }
@@ -27,6 +28,7 @@ public class CoroutineManager : MonoBehaviour
         for (int i = 0; i < delayFrameCount; i++)
         {
             yield return null;
+            i--;
             //if (StageTimeManager.Instance.AllStop) i--;
         }
         action();

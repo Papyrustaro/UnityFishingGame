@@ -154,6 +154,7 @@ public class FishingSceneManager : MonoBehaviour
         }else if(this.currentState == E_FishingSceneState.ShowFishedThing && Input.GetKeyDown(KeyCode.Return))
         {
             this.currentState = E_FishingSceneState.TryInputJustTime;
+            NotesManager.Instance.GenerateNote();
         }
     }
 
@@ -166,23 +167,34 @@ public class FishingSceneManager : MonoBehaviour
         //精度表示などの共通処理
         Debug.Log(NotesManager.Instance.CurrentNotesInputAccuracy);
         Debug.Log("かかったルーチン: " + NotesManager.Instance.CurrentNotesObject.CountRoutine);
+        this.currentState = E_FishingSceneState.WaitActionOnInput;
 
-
-        CoroutineManager.DelayMethod(1f, () =>
+        StartCoroutine(CoroutineManager.DelayMethod(1f, () =>
         {
-            NotesManager.Instance.CurrentNotesObject.ResetBeforeFinish();
+            NotesManager.Instance.CurrentNotesObject.gameObject.SetActive(false);
+            //NotesManager.Instance.CurrentNotesObject.ResetBeforeFinish(); //ここでリセットすると、精度用countTime等までリセットされる
             if (this.IsSuccessInput)
             {
+                //今回の入力精度ボーナス等記憶。
+                this.FastInputScoreBonusInOneFishing += this.GetThisInputFastScoreBonus();
+                this.InputAccuracyScoreBonusInOneFishing += this.GetThisInputAccuracyScoreBonus();
+
+                //notes初期化
+                NotesManager.Instance.CurrentNotesObject.ResetBeforeFinish();
                 this.CountInputInOneFishing++;
                 if (this.CountInputInOneFishing >= this.countOfInputSequenceInOneFishing)
                 {
                     //釣り上げ処理
                     this.CountInputInOneFishing = 0;
+                    this.CountFishedNum++;
                     this.OnGetFish();
                 }
                 else
                 {
-                    //次のタイミングアニメーション再生処理
+
+                    //次のタイミングアニメーション再生
+                    NotesManager.Instance.GenerateNote();
+                    this.currentState = E_FishingSceneState.TryInputJustTime;
                 }
             }
             else
@@ -190,7 +202,7 @@ public class FishingSceneManager : MonoBehaviour
                 //gameOver処理
                 this.OnGameOver();
             }
-        });
+        }));
     }
 
     public void OnGameOver()
@@ -202,6 +214,9 @@ public class FishingSceneManager : MonoBehaviour
     public void OnGetFish()
     {
         Debug.Log("釣り上げた");
+        this.CurrentScore += this.scoreOfOneFish + this.FastInputScoreBonusInOneFishing + this.InputAccuracyScoreBonusInOneFishing;
+        this.FastInputScoreBonusInOneFishing = 0;
+        this.InputAccuracyScoreBonusInOneFishing = 0;
         FishingUIManager.Instance.CurrentScoreText.text = "獲得スコア: " + this.CurrentScore;
         this.currentState = E_FishingSceneState.ShowFishedThing;
     }
@@ -243,6 +258,6 @@ public class FishingSceneManager : MonoBehaviour
     {
         TryInputJustTime,
         ShowFishedThing,
-
+        WaitActionOnInput,
     }
 }

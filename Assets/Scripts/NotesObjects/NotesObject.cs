@@ -73,6 +73,7 @@ public abstract class NotesObject : MonoBehaviour
             SetNoteAnimationSequence();
             SetSequenceOnUpdateFunc();
         }
+        FishingUIManager.Instance.RemainRoutineCountText.text = "残りルーチン: " + (FishingSceneManager.Instance.CountOfRoutineLimit - this._countRoutine);
         this.noteAnimationSequence.timeScale = playSpeed;
         this.gameObject.SetActive(this);
         if (!this.noteAnimationSequence.IsPlaying()) this.noteAnimationSequence.Play(); 
